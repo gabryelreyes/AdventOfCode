@@ -36,13 +36,16 @@ fn distance_traveled(held_time: u64, race_duration: u64) -> u64 {
 }
 
 fn part1(input: &str) -> u64 {
-    let lines = input.split("\n").map(|line| line.trim());
+    let lines = input.lines().map(|line| line.trim());
     let mut times: Vec<u64> = Vec::new();
     let mut distances: Vec<u64> = Vec::new();
     let mut ways_to_win: u64 = 1;
 
     for line in lines {
-        let temp = line.split(":").collect::<Vec<&str>>()[1]
+        let temp = line
+            .split(":")
+            .nth(1)
+            .unwrap()
             .split_whitespace()
             .map(|number| number.parse::<u64>().unwrap());
 
